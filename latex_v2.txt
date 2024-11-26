@@ -1,0 +1,125 @@
+\documentclass{mwart}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{lmodern,microtype}
+\usepackage{mathtools,amsthm,amssymb,icomma,upgreek,xfrac}
+\mathtoolsset{showonlyrefs,mathic}
+
+\title{kryteria}
+\author{Maria Nowacka, Malwina Olszewska, Roksana Rymarek}
+\date{\today}
+\newtheorem{tw}{Twierdzenie}
+\newtheorem{lem}[tw]{Lemat}
+\newtheorem{defi}{Definicja}
+\newtheorem{fakt}{Fakt}
+\begin{document}
+
+\maketitle
+
+\section{Kryteria zbieżności szeregów}
+
+\begin{tw}[kryterium porównwcze]
+    Załóżmy, że dla każdego \(n \in \mathbb{N}\) zachodzą nierówności
+\begin{equation}
+    0 \leq a_n \leq b_n. 
+\end{equation}
+Wówczas zachodzą następujące implikacje:
+\begin{equation}
+    \text{jeżeli szereg} \sum_{n=1}^{\infty} b_n \text{ jest zbieżny, to szereg} \sum_{n=1}^{\infty} a_n \text{ też jest zbieżny}
+\end{equation}
+\begin{equation}
+    \text{jeżeli szereg} \sum_{n=1}^{\infty} a_n \text{ jest rozbieżny, to szereg} \sum_{n=1}^{\infty} b_n \text{ też jest rozbieżny} 
+\end{equation}
+
+\begin{proof}
+    Suma szeregu o wyrazach nieujemnych musi istnieć - jest liczbą nieujemną lub nieskończończonością. Oznacza to, że obie implikacje są równoważne przez kontrapozycję. Wystarczy zatem przeprowadzić dowód tylko jednej z nich.
+
+    Załóżmy, że szereg  
+    \(\sum_{n=1}^{\infty} b_n\)
+    jest zbieżny oraz niech \(B\) będzie (skończoną) sumą tego szeregu. Skoro istnieje takie \(k\), że dla wszystkich \(n \geq k\) zachodzi nierówność \(a_n \leq b_n \), można założyć, że powyższa nierówność jest spełniona dla wszystkich \(n\) naturalnych, ponieważ skończona liczba wyrazów nie wpływa na zbieżność szeregu. Wtedy dla każdej liczby naturalnej spełniona jest nierówność
+% skąd j? zobaczyć notatki z analizy 1   
+    \begin{equation}
+        0 \leq \sum_{n=1}^{k} a_j \leq \sum_{n=1}^{k} b_j \leq B.
+    \end{equation}
+    Oznacza to, że ciąg
+    \begin{equation}
+        S_k = \sum_{n=1}^{k} a_n
+    \end{equation}
+    jest ograniczony (przez \(B\)). Ciąg ten jest też niemalejący, ponieważ wyrazy szeregu są nieujemne.
+    %tu można dać nierówność S_k+1 - S_k ...
+    Więc dla wszystkich \(k\) zachodzi 
+    \begin{equation}
+        S_{k+1} \geq S_k.
+    \end{equation}
+    Każdy ograniczony i niemalejący ciąg liczb rzezcywistych jest zbieżny, więc szereg \(\sum_{n=1}^{\infty} a_n\)  jest zbieżny, gdyż zbieżny jest jego ciąg sum częściowych.
+\qedhere
+\end{proof}
+\begin{ex}
+\begin{equation}
+	\sum_{n=1}^{\infty} \fract{1}{n!}
+	n^2 \leq n! \forall n \geq 4
+	\frac{1}{n^2} \geq \frac{1}{n!}
+	\text{Z Faktu 1. wiemy, że szereg} \sum_{n=1}^{\infty} \fract{1}{n^2} 
+	\text{jest zbieżny, więc z kryterium porównawczego badany szereg również jest zbieżny.} 
+\end{equation}
+\end{ex}
+\end{tw}
+
+
+\begin{defi}[Szereg harmoniczny]
+\begin{equation}
+    \sum_{n=1}^\infty \frac{1}{n} = 1+\frac{1}{2}+\frac{1}{3}+ \ldots
+\end{equation}
+\end{defi}
+\begin{tw}
+Szereg harmoniczny jest rozbieżny
+\end{tw}
+\begin{proof}
+Zauważmy, że 
+\begin{equation}
+    \sum_{n=1}^\infty \frac{1}{n} = 1+\left(\frac{1}{2}\right)+\left(\frac{1}{3}+\frac{1}{4}\right)+\left(\frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}\right)+\ldots+\left(\frac{1}{2^n +1}+\frac{1}{2^n +2}+ \ldots + \frac{1}{2^{n+1}}\right) + \ldots
+\end{equation}
+Dodatkowo
+\begin{equation}
+\begin{aligned}
+    \frac{1}{2}&\geq\frac{1}{2} \\
+    \frac{1}{3}+\frac{1}{4}&>\frac{1}{4}+\frac{1}{4}=\frac{1}{2} \\
+    \frac{1}{5}+\frac{1}{6}+\frac{1}{7}+\frac{1}{8}&>\frac{1}{8}+\frac{1}{8}+\frac{1}{8}+\frac{1}{8}=\frac{1}{2} \\
+    \frac{1}{2^n +1}+\frac{1}{2^n +2}+ \ldots + \frac{1}{2^{n+1}}&>2^n \cdot \frac{1}{2^{n+1}} = \frac{1}{2}\\
+    \sum_{k=1}^{2^n} \frac{1}{k} &> 1 + \frac{1}{n} \cdot n \rightarrow_{\left(n\rightarrow\infty\right)} \infty 
+\end{aligned}
+
+I z kryterium porównawczego {S_n\rightarrow\infty} \textup{  i badany szereg jest rozbieżny.}
+\end{equation}
+\qedhere
+\end{proof}
+\begin{ft}
+\begin{equation}
+    \sum_{n=1}^\infty \frac{1}{n^a} \ \textup{ jest zbieżny dla a$>$1 i rozbieżny dla 0$<$a$<$1.}
+\end{equation}
+\end{ft}
+
+\begin{tw}[kryterium ilorazowe]
+	Załóżmy, że wyrazy ciągów a_n i b_nsą dodatnie (od pewnego miejsca) oraz istnieje granica 
+\begin{equation}
+	k = \lim_{n\rightarrow \infty} \frac{a_n}{b_n}
+\end{equation}
+która jest właściwa i dodatnia, \(0<k<\infty\)
+Wówczas szeregi \(\sum_{n=1}^{\infty} a_n\) i \(\sum_{n=1}^{\infty} b_n\) albo są oba zbieżne, albo oba rozbieżne.
+Tasama teza jest prawdziwa, gdy założymy, że wyrazu ciągów \(a_n\) i \(b_n\) są ujemne (od pewnego miejsca).
+\begin{ex}
+	Przykład na ryterium ilorazowe
+\end{ex}
+	
+\end{tw}
+
+\end{document}
+
+\textup{1. Ala i Ola mają po 14 pierogów} % prosty
+\textit{ 2. Ala i Ola mają po 14 pierogów} % italic
+\textsl{ 3. Ala i Ola mają po 14 pierogów} % pochyły, mniej fancy
+\textmd{ 4. Ala i Ola mają po 14 pierogów} % prosty
+\textbf{ 5, Ala i Ola mają po 14 pierogów} % pogrubiony
+\textrm{ 6. Ala i Ola mają po 14 pierogów} % prosty
+\textsf{ 7. Ala i Ola mają po 14 pierogów} % inna czcionka, trochę jak kod programu
+\texttt{ 8. Ala i Ola mają po 14 pierogów} % inna czcionka, bardziej jak kod programu
