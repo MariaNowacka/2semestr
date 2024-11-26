@@ -1,0 +1,87 @@
+MODUŁ random
+>>> import random
+>>> for i in range(5): print(random.random())
+... 
+0.9304881128986717
+0.07340296644725441
+0.5585326734399333
+0.24846850517637709
+0.3885152871254326
+>>>
+>>> for i in range(5): print(random.uniform(10,20))
+... 
+14.298069583077345
+17.13091733057326
+16.92986474910291
+15.390785643166637
+12.861425340664471
+MODUŁ random
+>>> for i in range(5): print(random.randint(10,200))... 
+76
+39
+113
+66
+60
+>>> lista = [1,2,3,5,9]
+>>> for i in range(5): print(random.choice(lista))
+... 
+2
+1
+1
+9
+2
+>>> random.sample(lista,2)
+[2, 1]
+>>> random.sample(lista,2)
+[9, 3]
+MODUŁ random
+>>> perm = [1,2,3,4,5,6,7,8,9]
+>>> random.shuffle(perm)
+>>> perm
+[6, 7, 3, 2, 8, 9, 4, 1, 5]
+>>> random.shuffle(perm)
+>>> perm
+[6, 7, 2, 5, 4, 9, 8, 3, 1]
+>>> random.shuffle(perm)
+>>> perm
+[9, 5, 7, 8, 6, 3, 1, 4, 2]
+MODUŁ random
+>>> histogram = [0] * 20
+>>> for i in range (1000):
+...     k = int(random.gauss(5,1)*2)
+...     histogram[k] = histogram[k] + 1
+... 
+>>> m = max(histogram)
+>>> for v in histogram:
+...     print("*"*int(v*20/m))
+... 
+
+**
+****
+*********
+****************
+********************
+*******************
+***************
+*********
+*****
+
+>>> random.seed(1)
+>>> for i in range(5):
+...     print('%04.3f' % random.random())
+... 
+0.134
+0.847
+0.764
+0.255
+0.495
+>>> random.seed(1)
+>>> for i in range(5):
+...     print('%04.3f' % random.random())
+... 
+0.134
+0.847
+0.764
+0.255
+0.495
+

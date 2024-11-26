@@ -1,0 +1,76 @@
+WYBRANE METAZNAKI
+Metaznak	Znaczenie
+.	każdy znak z wyjątkiem znaku nowej linii
+ˆ	początek napisu lub przeczenie w zbiorze znaków
+$	koniec napisu lub linii
+*	0 lub więcej wystąpień poprzedzającego wyrażenia
++	1 lub więcej wystąpień poprzedzającego wyrażenia
+?	0 lub 1 wystąpienie poprzedzającego wyrażenia
+{m}	\(m\) kopii poprzedzającego wyrażenia
+{m,n}	od \(m\) do \(n\) kopii poprzedzającego wyrażenia
+\	znak ucieczki
+[]	zbiór znaków (traktowanych dosłownie!)
+\d	dowolna cyfra ([0-9])
+\D	dowolny znak niebędący cyfrą ([^0-9])
+\s	dowolny biały znak
+\S	dowolny znak niebędący białym znakiem
+\w	dowolny znak alfanumeryczny
+\W	dowolny znak niebędący znakiem alfanumerycznym
+(...)	wyrażenie traktowane jako grupa
+
+WYSZUKIWANIE GRUP CYFR
+>>> import re
+>>> tekst = "16/07/2021"
+>>> m = re.match("(\d{2})/(\d{2})/(\d{2,4})",tekst)
+>>> m.group(1,2,3)
+('16', '07', '2021')
+>>> dzien, miesiac, rok = m.group(1,2,3)
+>>> dzien
+'16'
+>>> miesiac
+'07'
+>>> rok
+'2021'
+
+ZAMIANA TEKSTU
+>>> tekst = "To nie jest zabawne"
+>>> re.sub("nie jest", "jest", tekst)
+'To jest zabawne'
+>>> re.sub("[^\w]+","-",tekst)
+'To-nie-jest-zabawne'
+>>> re.sub("\S+","-BEEP-",tekst)
+'-BEEP- -BEEP- -BEEP- -BEEP-'
+
+WYSZUKIWANIE TEKSTÓW
+Adresy email \(\rightarrow\) wzorzec \w+@\w+?
+
+>>> text = "to jest szum janusz-s@issp.pl znowu szum"
+>>> match = re.search("\w+@\w+",text)
+>>> match.group()
+'s@issp'
+>>> text = "to jest szum janusz-s@issp.pl znowu szum"
+>>> match = re.search("[\w._-]+@[\w._-]+",text)
+>>> match.group()
+'janusz-s@issp.pl'
+>>> match = re.search("([\w._-]+)@([\w._-]+)",text)
+>>> match.group()
+'janusz-s@issp.pl'
+>>> match.group(1)
+'janusz-s'
+>>> match.group(2)
+'issp.pl'
+>>> text = """szum janusz-s@issp.pl znowu szum
+... jakub-p@issp.pl znowu szum wiktor-n@issp.pl 
+... i jeszcze szum"""
+>>> emails = re.findall("[\w._-]+@[\w._-]+",text)
+>>> for email in emails: print(email)
+... 
+janusz-s@issp.pl
+jakub-p@issp.pl
+wiktor-n@issp.pl
+>>> tuples = re.findall("([\w._-]+)@([\w._-]+)",text)
+>>> for tpl in tuples: print(tpl[0], " at ", tpl[1]) 
+... 
+janusz-s  at  issp.pl
+jakub-p  at  issp.pl
+wiktor-n  at  issp.pl

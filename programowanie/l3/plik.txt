@@ -1,0 +1,4 @@
+programowanie jest super :)
+zobaczymy czy działa to
+zadanie, w którym trzeba zmieniać znaki 
+końca linii

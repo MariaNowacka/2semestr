@@ -1,0 +1,70 @@
+Format	Znaczenie
+%d	liczba całkowita
+%5d	j.w., w polu o szerokosci 5 znaków
+%-5d	j.w, wyrównana do lewej
+%05d	j.w., uzupełniona zerami (np. 00041)
+%5.1f	liczba zmiennoprzecinkowa (pole 5 znaków, jedna cyfra dziesiętna)
+%.3f	3 cyfry dziesiętne, najmniejsze możliwe pole
+%s	łańcuch znaków
+%-20s	j.w., wyrównany do lewej w polu o szerokości 20 znaków
+
+METODA format
+>>> '{0}, {1}, {2}'.format('a', 'b', 'c')
+'a, b, c'
+>>> '{}, {}, {}'.format('a', 'b', 'c')
+'a, b, c'
+>>> '{2}, {1}, {0}'.format('a', 'b', 'c')
+'c, b, a'
+>>> '{2},{1},{0}'.format(*'abc')
+'c,b,a'
+>>> '{0}{1}{0}'.format('abra', 'cad')
+'abracadabra'
+>>> 'Współrzędne: {lat}, {lon}'.format(lat='37.24N', 
+lon='-115.81W')
+'Współrzędne: 37.24N, -115.81W'
+>>> '{:30}'.format('text')
+'text                          '
+>>> '{:<30}'.format('left aligned')
+'left aligned                  '
+>>> '{:>30}'.format('right aligned')
+'                 right aligned'
+>>> '{:^30}'.format('centered')
+'           centered           '
+>>> '{:*^30}'.format('centered')
+'***********centered***********'
+>>> '{:+f}; {:+f}'.format(3.14, -3.14)
+'+3.140000; -3.140000'
+>>> '{: f}; {: f}'.format(3.14, -3.14)
+' 3.140000; -3.140000'
+>>> '{:-f}; {:-f}'.format(3.14, -3.14)
+'3.140000; -3.140000'
+>>> "int: {0:d};  hex: {0:x};  bin: {0:b}".format(42)
+'int: 42;  hex: 2a;  bin: 101010'
+>>> '{:,}'.format(1234567890)
+'1,234,567,890'
+f- ŁAŃCUCHY
+>>> name = 'Piotr'
+>>> age = 23
+>>> f"{name} is {age} years old."
+'Piotr is 23 years old.'
+>>> user = {'name': 'John Doe', 'occupation': 'gardener'}
+>>> f"{user['name']} is a {user['occupation']}"
+'John Doe is a gardener'
+>>> x = [1,2,3,4]
+>>> f"{sum(x) = }"
+'sum(x) = 10'
+>>> val = 12.3
+>>> f'{val:.2f}'
+'12.30'
+>>> f'{val:.5f}'
+'12.30000'
+>>> s = 'abcd'
+>>> f'{s:>10}'
+'      abcd'
+>>> a = 300
+>>> f"{a:x}"
+'12c'
+>>> f"{a:o}"
+'454'
+>>> f"{a:e}"
+'3.000000e+02
